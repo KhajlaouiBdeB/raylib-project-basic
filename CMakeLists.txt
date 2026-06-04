@@ -38,8 +38,16 @@ set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT R
 target_include_directories(${PROJECT_NAME} PUBLIC "${EXTERNAL_ROOT_DIR}/raylib/include")
 target_include_directories(${PROJECT_NAME} PUBLIC "${EXTERNAL_ROOT_DIR}")
 
+# Determine architecture folder (x64 / Win32) like the MSBuild $(Platform) macro
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(RAYLIB_ARCH "x64")
+else()
+    set(RAYLIB_ARCH "Win32")
+endif()
+
 # Link libraries BINARY
-target_link_directories(${PROJECT_NAME} PUBLIC "${EXTERNAL_ROOT_DIR}/raylib/lib/$(Platform)/$(Configuration)")
+# $<CONFIG> replaces the MSBuild $(Configuration) macro and works with every generator (Ninja, VS, ...)
+target_link_directories(${PROJECT_NAME} PUBLIC "${EXTERNAL_ROOT_DIR}/raylib/lib/${RAYLIB_ARCH}/$<CONFIG>")
 target_link_libraries(${PROJECT_NAME} raylib winmm)
 
 # set Raylib definitions
