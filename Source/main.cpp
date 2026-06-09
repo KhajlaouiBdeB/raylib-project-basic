@@ -14,5 +14,7 @@ using namespace BdB;
 int main()
 {
     cout << "Hello BdeB!" << std::endl;
+
+    // TOOD: Implement le boucle de jeu ici
     pressToContinue();
 }
