@@ -1,11 +1,13 @@
 #include "GameTest.h"
 #include <raylib.h>
 
+
 namespace core
 {
 	GameTest::GameTest() : GameBase()
 	{
 		InitWindow(720, 480, "Game Test");
+		SetTraceLogLevel(LOG_DEBUG);
 		SetTargetFPS(60);
 
 		size = 50.0f;
@@ -36,6 +38,8 @@ namespace core
 
 	void GameTest::update()
 	{
+		_tree.tick();
+
 		float dt = GetFrameTime();
 
 		velocityY = velocityY + 1200.0f * dt;

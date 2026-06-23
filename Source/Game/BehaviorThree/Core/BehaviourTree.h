@@ -1,4 +1,6 @@
 #pragma once
+#include <raylib.h>
+
 #include "Node.h"
 
 namespace BehaviourTree
@@ -7,10 +9,11 @@ namespace BehaviourTree
 	{
 	public:
 		BehaviourTree() = default;
-		~BehaviourTree();
+		~BehaviourTree() = default;
 
 		NodeState tick() const
 		{
+			TraceLog(LOG_DEBUG, "BehaviourTree tick");
 			if (_rootNode)
 				return _rootNode->tick();
 
