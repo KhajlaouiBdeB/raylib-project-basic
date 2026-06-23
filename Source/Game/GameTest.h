@@ -8,12 +8,16 @@ namespace core
 	public:
 		GameTest();
 		~GameTest() override;
-
 		void inputHandler() override;
 		void update() override;
 		void render() override;
+	private:
+		float x;
+		float y;
+		float velocityX;
+		float velocityY;
+		float size;
+		float ground;
+		bool onGround;
 	};
-
 }
-
-
