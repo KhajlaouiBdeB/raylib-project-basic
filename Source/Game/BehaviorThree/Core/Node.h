@@ -17,7 +17,7 @@ namespace BehaviourTree
 		virtual ~Node() = default;
 		virtual NodeState tick() = 0;
 
-	private:
+	protected:
 		Node() = default;
 
 	};
